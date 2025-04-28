@@ -5,9 +5,11 @@ import './App.css';
 import { useGetFlowDataQuery } from './features/flow/flowAPI';
 import { ReactFlow, Background, Controls} from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
+import FormNode from './components/Nodes/formNode';
 
 
 function App() {
+  let nodeTypes = {form: FormNode}
   const {data, error, isLoading} = useGetFlowDataQuery()
 
   console.log(isLoading)
@@ -23,7 +25,7 @@ function App() {
     <div className="App">
       {isLoading && <div>Loading... </div>}
       {!isLoading && <div style={{height: '100%'}}>
-          <ReactFlow nodes={data.nodes} edges={edges}>
+          <ReactFlow nodes={data.nodes} nodeTypes={nodeTypes} edges={edges}>
             <Background/>
             <Controls/>
           </ReactFlow>

@@ -8,8 +8,10 @@ export const flowAPI = createApi({
   endpoints: (builder) => ({
     getFlowData: builder.query({
       query: () => ``,
-      transformResponse: (response) => {response.edges = response.edges.map((edge) => edge = {...edge, id: edge.source + edge.target})
-    return response}
+      transformResponse: (response) => {
+        response.edges = response.edges.map((edge) => edge = {...edge, id: edge.source + edge.target})
+        return response
+      }
     }),
   }),
 })
