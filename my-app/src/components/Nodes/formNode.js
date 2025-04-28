@@ -19,7 +19,7 @@ function FormNode({ data, isConnectable }) {
       </div>
       <div>        
         <p className="type">Form</p>
-        <p name="text">{data.name}</p>
+        <p>{data.name}</p>
       </div>
       <Handle
         type="source"
