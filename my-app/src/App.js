@@ -16,7 +16,8 @@ function App() {
   console.log(data?.edges)
   console.log(error)
 
-  let edges = data?.edges.map((edge) => edge = {...edge, id: edge.source + edge.target})
+  //let edges = data?.edges.map((edge) => edge = {...edge, id: edge.source + edge.target})
+  let edges = data?.edges
 
   return (
     <div className="App">
