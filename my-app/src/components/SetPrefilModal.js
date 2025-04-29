@@ -40,27 +40,39 @@ function SetPrefillModal({onClose, nodeId, selectedProperty}) {
     }
 
     return(
-        <div>
+      <div>
+        {isLoading && <div>Loading... </div>}
+        {!isLoading && error && <div>Something went wrong retrieving data</div>}
+        {!isLoading && data && <div className="modal-overlay">
+          <div className="modal-content">
+            <p className="heading">Select data element to map</p>
+            Available Data
+            <br/>
             <input
               type="text"
-              placeholder=""
+              placeholder="Search"
               value={search}
               onChange={(e) => setSearch(e.target.value.toLowerCase())}
             />
             <ul>
               {formattedData.map((formData) => (
-                <li className="prefill-list-item" key={formData.name} onClick={()=>setShowLists({...showLists, [formData.name]: !showLists[formData.name]})}>
-                  <div>{formData.name}</div>
+                <li className="prefill-list-item" key={formData.name}>
+                  <span className={(!showLists[formData.name] && "arrow-right") || (showLists[formData.name] && "arrow-down")}></span>
+                  <span style={{paddingLeft: 3}} className="clickable" onClick={()=>setShowLists({...showLists, [formData.name]: !showLists[formData.name]})}>{formData.name}</span>
                   {showLists[formData.name] && <ul>
                     {formData.properties && formData.properties.map((property) => (
-                      <li className="prefill-list-item" key={property} onClick={()=>dispatch(insert({source: nodeId, property: selectedProperty, value: {source: formData.name, property: property}}))}>{property}</li>
+                      <li className="prefill-list-item" key={property}>
+                        <span className="clickable" onClick={()=>{dispatch(insert({source: nodeId, property: selectedProperty, value: {source: formData.name, property: property}})); onClose()}}>{property}</span>
+                      </li>
                     ))}
                   </ul>}
                 </li>
-        ))}
-      </ul>
-            <button onClick={onClose}>Close</button>
-        </div>
+              ))}
+            </ul>
+            <button onClick={onClose} className="cancel-button">CANCEL</button>
+          </div>
+        </div>}
+      </div>
     )
 }
   

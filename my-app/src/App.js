@@ -26,7 +26,8 @@ function App() {
   return (
     <div className="App">
       {isLoading && <div>Loading... </div>}
-      {!isLoading && <div style={{height: '100%'}}>
+      {!isLoading && error && <div>Something went wrong retrieving data</div>}
+      {!isLoading && data && <div style={{height: '100%'}}>
         <PrefillPanel hidden={!selectedNode} nodeId={selectedNode} onClose={() => setSelectedNode(null)}/>
         <ReactFlow nodes={data.nodes} nodeTypes={nodeTypes} edges={edges} onNodeClick={(event, node) => setSelectedNode(node.id)}>
           <Background/>

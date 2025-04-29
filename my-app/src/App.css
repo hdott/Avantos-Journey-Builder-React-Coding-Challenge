@@ -42,6 +42,117 @@
   list-style: none;
 }
 
+.prefill-empty, .prefill-value, .prefill-list-item{
+  text-align: left;
+}
+
+.prefill-empty, .prefill-value{
+  background-color: #ececec;
+  padding: 5px;
+}
+
+.prefill-value{
+  border-radius: 20px;
+}
+
 .prefill-empty{
-  color: gray;
+  color: #9c9c9c;
+}
+
+.prefill-empty:hover, button, .clickable:hover, .arrow-down:hover, .arrow-right:hover{
+  cursor:pointer
+}
+
+.prefill-panel-overlay {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5); 
+}
+
+.prefill-panel-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 2;
+  max-width: 600px;
+  width: 100%;
+}
+
+.modal-overlay {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5); 
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 4;
+  max-width: 600px;
+  width: 100%;
+}
+
+.cancel-button{
+  color: rgb(78, 160, 255);
+  background-color: white;
+  border-color: rgb(78, 160, 255);
+  border-style: solid;
+  font-size: large;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.cancel-button:hover {
+  background-color: rgb(78, 160, 255);
+  color: white;
+}
+
+.clear-prefill {
+  margin-top: 2px;
+  float: right;
+  border-radius: 15px;
+  border: none;
+  background-color: #b9b9b9;
+  color: #ececec; 
+}
+
+input {
+  border-radius: 3px;
+  border-style: solid;
+}
+
+.arrow-down {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(45deg);
+}
+
+.arrow-right {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(-45deg);
+}
+
+.heading{
+  font-size: large;
+  padding-left: 0;
 }

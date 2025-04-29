@@ -15,7 +15,7 @@ function PrefillPanel({nodeId, onClose}) {
     let form;
     let propertiesList;
 
-    if(nodeId){
+    if(nodeId && !isLoading){
       currentNode = data?.nodes?.find((node) => node.id===nodeId)
       form = data?.forms?.find((form) => form.id === currentNode.data.component_id)
       propertiesList = Object.keys(form.field_schema.properties).map((property) => {return <PrefillRow nodeId={currentNode.id} property={property} onClick={()=>setModifying({form: form.id, property: property})}/>})
@@ -24,12 +24,16 @@ function PrefillPanel({nodeId, onClose}) {
     return (
       <div>
         {isLoading && <div>Loading... </div>}
-        {!isLoading && nodeId && <div className="modal"> 
-            <p>{currentNode.data.name}</p>
-            {propertiesList}
-            <button onClick={() => onClose()}>Close</button>
-          </div>} 
+        {!isLoading && error && <div>Something went wrong retrieving data</div>}
         {!isLoading && modifying && <SetPrefillModal onClose={() => setModifying(null)} nodeId={nodeId} selectedProperty={modifying.property}/>}
+        {!isLoading && data && nodeId && <div className="prefill-panel-overlay">
+          <div className="prefill-panel-content">
+            <p className="heading">{"Prefill " + currentNode.data.name}</p>
+            {propertiesList}
+            <br/>
+            <button onClick={() => onClose()} className="cancel-button">CANCEL</button>
+          </div>
+          </div>} 
       </div>
     );
   }

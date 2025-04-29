@@ -13,10 +13,11 @@ function PrefillRow({nodeId, property, onClick}) {
     return (
       <div>
         {!value && <div onClick={onClick} className="prefill-empty">{property}</div>}
-        {value && <div>
+        {value && <div className="prefill-value">
           {property + ": " + value.source + "." +value.property}
-          <button onClick={() => dispatch(remove({source: nodeId, property: property}))}>X</button>
+          <button className="clear-prefill"onClick={() => dispatch(remove({source: nodeId, property: property}))}>X</button>
           </div>}
+        <br/>
       </div>
     );
   }
