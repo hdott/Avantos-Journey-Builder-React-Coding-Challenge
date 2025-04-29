@@ -1,13 +1,22 @@
 import prefillSlice from "../features/prefill/prefillSlice";
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { remove } from "../features/prefill/prefillSlice";
 
-function PrefillRow({formId, property, onClick}) {
-    const value = useSelector((state) => state.formId?.property)    
+function PrefillRow({nodeId, property, onClick}) {
+    const value = useSelector((state) => state.prefill?.[nodeId]?.[property])    
+    const value2 = useSelector((state)=>state.prefill)
+    const dispatch = useDispatch()
+
+
+    console.log(value2)
     
     return (
       <div>
-        {!value && <p onClick={onClick}>{property}</p>}
-        {value && <p>{property + ": " + value.source + "." +value.property}</p>}
+        {!value && <div onClick={onClick} className="prefill-empty">{property}</div>}
+        {value && <div>
+          {property + ": " + value.source + "." +value.property}
+          <button onClick={() => dispatch(remove({source: nodeId, property: property}))}>X</button>
+          </div>}
       </div>
     );
   }

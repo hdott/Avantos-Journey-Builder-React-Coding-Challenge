@@ -18,18 +18,18 @@ function PrefillPanel({nodeId, onClose}) {
     if(nodeId){
       currentNode = data?.nodes?.find((node) => node.id===nodeId)
       form = data?.forms?.find((form) => form.id === currentNode.data.component_id)
-      propertiesList = Object.keys(form.field_schema.properties).map((property) => {return <PrefillRow formId={form.id} property={property} onClick={()=>setModifying({form: form.id, property: property})}/>})
+      propertiesList = Object.keys(form.field_schema.properties).map((property) => {return <PrefillRow nodeId={currentNode.id} property={property} onClick={()=>setModifying({form: form.id, property: property})}/>})
     }
   
     return (
       <div>
         {isLoading && <div>Loading... </div>}
-        {!isLoading && nodeId && <div> 
+        {!isLoading && nodeId && <div className="modal"> 
             <p>{currentNode.data.name}</p>
             {propertiesList}
             <button onClick={() => onClose()}>Close</button>
-          </div>}
-        {!isLoading && modifying && <SetPrefillModal onClose={() => setModifying(null)} nodeId={nodeId}/>}
+          </div>} 
+        {!isLoading && modifying && <SetPrefillModal onClose={() => setModifying(null)} nodeId={nodeId} selectedProperty={modifying.property}/>}
       </div>
     );
   }

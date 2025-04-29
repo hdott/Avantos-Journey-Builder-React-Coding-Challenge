@@ -41,3 +41,7 @@
 .prefill-list-item {
   list-style: none;
 }
+
+.prefill-empty{
+  color: gray;
+}
