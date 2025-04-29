@@ -1,9 +1,14 @@
 import { useGetFlowDataQuery } from "../features/flow/flowAPI";
 import PrefillRow from "./PrefillRow";
+import { useState, useMemo } from "react";
+import SetPrefillModal from "./SetPrefilModal";
 
 function PrefillPanel({nodeId, onClose}) {
-    console.log(nodeId)
     const {data, error, isLoading} = useGetFlowDataQuery()
+    const [modifying, setModifying] = useState(null)
+
+    console.log(modifying)
+
 
     //Get form properties from nodeId
     let currentNode;
@@ -13,7 +18,7 @@ function PrefillPanel({nodeId, onClose}) {
     if(nodeId){
       currentNode = data?.nodes?.find((node) => node.id===nodeId)
       form = data?.forms?.find((form) => form.id === currentNode.data.component_id)
-      propertiesList = Object.keys(form.field_schema.properties).map((property) => {return <PrefillRow formId={form.id} property={property}/>})
+      propertiesList = Object.keys(form.field_schema.properties).map((property) => {return <PrefillRow formId={form.id} property={property} onClick={()=>setModifying({form: form.id, property: property})}/>})
     }
   
     return (
@@ -24,6 +29,7 @@ function PrefillPanel({nodeId, onClose}) {
             {propertiesList}
             <button onClick={() => onClose()}>Close</button>
           </div>}
+        {!isLoading && modifying && <SetPrefillModal onClose={() => setModifying(null)} nodeId={nodeId}/>}
       </div>
     );
   }

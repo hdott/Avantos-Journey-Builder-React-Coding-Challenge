@@ -1,10 +1,13 @@
-import { useGetFlowDataQuery } from "../features/flow/flowAPI";
+import prefillSlice from "../features/prefill/prefillSlice";
+import { useSelector } from 'react-redux'
 
-function PrefillRow({formId, property}) {
+function PrefillRow({formId, property, onClick}) {
+    const value = useSelector((state) => state.formId?.property)    
     
     return (
       <div>
-        <p>{property}</p>
+        {!value && <p onClick={onClick}>{property}</p>}
+        {value && <p>{property + ": " + value.source + "." +value.property}</p>}
       </div>
     );
   }

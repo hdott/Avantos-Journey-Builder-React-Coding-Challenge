@@ -1,6 +1,5 @@
 import {useState} from 'react';
 import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
 import './App.css';
 import { useGetFlowDataQuery } from './features/flow/flowAPI';
 import { ReactFlow, Background, Controls} from '@xyflow/react';
