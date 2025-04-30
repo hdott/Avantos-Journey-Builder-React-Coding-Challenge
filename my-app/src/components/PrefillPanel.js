@@ -1,6 +1,6 @@
 import { useGetFlowDataQuery } from "../features/flow/flowAPI";
 import PrefillRow from "./PrefillRow";
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import SetPrefillModal from "./SetPrefilModal";
 
 function PrefillPanel({nodeId, onClose}) {
