@@ -1,7 +1,7 @@
 To run the mock server, first open a terminal in frontendchallengeserver & run
   npm start
 
-TO run the application, in another terminal, open my-app & run
+To run the application, in another terminal, open my-app & run
   npm start
 
 When prompted with 
