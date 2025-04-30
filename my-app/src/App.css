@@ -166,7 +166,18 @@ input {
   transform: rotate(-45deg);
 }
 
+.prefill-subheading, .heading{
+  padding-left: 0;
+}
+
 .heading{
   font-size: large;
   padding-left: 0;
+}
+
+.prefill-subheading{
+  font-size: small;
+  color: #9c9c9c;
+  text-align: left;
+  width: 100%;
 }

@@ -2,12 +2,17 @@ import { useGetFlowDataQuery } from "../features/flow/flowAPI";
 import PrefillRow from "./PrefillRow";
 import { useState } from "react";
 import SetPrefillModal from "./SetPrefilModal";
+import { useSelector, useDispatch } from "react-redux";
+import { toggle } from "../features/prefill/prefillSlice";
+
 
 function PrefillPanel({nodeId, onClose}) {
     const {data, error, isLoading} = useGetFlowDataQuery()
     const [modifying, setModifying] = useState(null)
+    const value = useSelector((state) => state.prefill?.[nodeId]?.disabled)
+    const dispatch = useDispatch()
 
-    console.log(modifying)
+    console.log(value)
 
     //Get form properties from nodeId
     let currentNode;
@@ -30,7 +35,11 @@ function PrefillPanel({nodeId, onClose}) {
         {!isLoading && data && nodeId && <div className="prefill-panel-overlay">
           <div className="prefill-panel-content">
             <p className="heading">{"Prefill " + currentNode?.data?.name}</p>
-            {propertiesList}
+            <div className="prefill-subheading">
+              Prefill fields for this form
+              <input type="checkbox" checked={!value} onChange={() => dispatch(toggle({destination: nodeId}))}></input>
+            </div>
+            {!value && propertiesList}
             <br/>
             <button onClick={() => onClose()} className="close-button">CLOSE</button>
           </div>

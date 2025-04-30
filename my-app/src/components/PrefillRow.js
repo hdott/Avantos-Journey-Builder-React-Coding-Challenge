@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { remove } from "../features/prefill/prefillSlice";
 
 function PrefillRow({nodeId, property, onClick}) {
-    const value = useSelector((state) => state.prefill?.[nodeId]?.[property])    
+    const value = useSelector((state) => state.prefill?.[nodeId]?.properties?.[property])    
     //const value2 = useSelector((state)=>state.prefill)
     const dispatch = useDispatch()
 
@@ -14,7 +14,7 @@ function PrefillRow({nodeId, property, onClick}) {
         {!value && <div onClick={onClick} className="prefill-empty">{property}</div>}
         {value && <div className="prefill-value">
           {property + ": " + value.source + "." +value.property}
-          <button className="clear-prefill"onClick={() => dispatch(remove({source: nodeId, property: property}))}>X</button>
+          <button className="clear-prefill"onClick={() => dispatch(remove({destination: nodeId, property: property}))}>X</button>
           </div>}
         <br/>
       </div>

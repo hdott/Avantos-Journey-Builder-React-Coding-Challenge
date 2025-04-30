@@ -5,6 +5,7 @@ import useGetConnectedNodes from "../hooks/flowDataHelpers"
 import { useGetFlowDataQuery } from "../features/flow/flowAPI";
 import { insert } from "../features/prefill/prefillSlice";
 
+
 function SetPrefillModal({onClose, nodeId, selectedProperty}) {
     const {data, error, isLoading} = useGetFlowDataQuery()
     const connectedNodes = useGetConnectedNodes(nodeId);
@@ -62,7 +63,7 @@ function SetPrefillModal({onClose, nodeId, selectedProperty}) {
                   {showLists[formData.name] && <ul>
                     {formData.properties && formData.properties.map((property) => (
                       <li className="prefill-list-item" key={property}>
-                        <span className="clickable" onClick={()=>{dispatch(insert({source: nodeId, property: selectedProperty, value: {source: formData.name, property: property}})); onClose()}}>{property}</span>
+                        <span className="clickable" onClick={()=>{dispatch(insert({destination: nodeId, property: selectedProperty, value: {source: formData.name, property: property}})); onClose()}}>{property}</span>
                       </li>
                     ))}
                   </ul>}
