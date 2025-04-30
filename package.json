@@ -1,0 +1,7 @@
+{
+  "devDependencies": {
+    "install": "^0.13.0",
+    "msw": "^2.7.5",
+    "npm": "^11.3.0"
+  }
+}

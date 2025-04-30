@@ -19,18 +19,19 @@ function SetPrefillModal({onClose, nodeId, selectedProperty}) {
     if(!isLoading){
         for(let connectedNode of connectedNodes){
             let currentNode = data?.nodes?.find((node) => node.id===connectedNode)
-            let form = data?.forms?.find((form) => form.id === currentNode.data.component_id)
+            let form = data?.forms?.find((form) => form.id === currentNode?.data?.component_id)
 
-            availableData[currentNode.id] = {name: currentNode.data.name}
-            availableData[currentNode.id].properties = form.field_schema.properties
+            availableData[currentNode.id] = {name: currentNode?.data?.name}
+            availableData[currentNode.id].properties = form?.field_schema?.properties
         }
         //console.log("AVAILALBE DATA", availableData)
 
-        
-        formattedData = Object.values(availableData).sort((a, b) => a.name.localeCompare(b.name)).map((formData) => ({
-          name: formData.name,
-          properties: Object.keys(formData.properties).filter((property) => property.toLowerCase().includes(search)),
-        }));
+        if(availableData){
+          formattedData = Object.values(availableData).sort((a, b) => a.name.localeCompare(b.name)).map((formData) => ({
+            name: formData.name,
+            properties: Object.keys(formData.properties).filter((property) => property.toLowerCase().includes(search)),
+          }));
+        }
         
           //console.log("formattedData:", formattedData);
         
