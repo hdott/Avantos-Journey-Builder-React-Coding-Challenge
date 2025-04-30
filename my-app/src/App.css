@@ -107,14 +107,17 @@
   width: 100%;
 }
 
-.cancel-button{
-  color: rgb(78, 160, 255);
+.cancel-button, .close-button{
   background-color: white;
-  border-color: rgb(78, 160, 255);
   border-style: solid;
   font-size: large;
   padding: 5px;
   border-radius: 5px;
+}
+
+.cancel-button{
+  color: rgb(78, 160, 255);
+  border-color: rgb(78, 160, 255);
 }
 
 .cancel-button:hover {
@@ -130,6 +133,17 @@
   background-color: #b9b9b9;
   color: #ececec; 
 }
+
+.close-button{
+  color: rgb(255, 78, 78);
+  border-color: rgb(255, 78, 78);
+}
+
+.close-button:hover {
+  background-color: rgb(255, 78, 78);
+  color: white;
+}
+
 
 input {
   border-radius: 3px;

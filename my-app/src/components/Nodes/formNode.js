@@ -1,8 +1,7 @@
-import { useCallback } from 'react';
 import { Handle, Position } from '@xyflow/react';
 import './node.css'
  
-const handleStyle = { left: 10 };
+//const handleStyle = { left: 10 };
  
 function FormNode({ data, isConnectable }) {
  

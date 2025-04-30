@@ -1,5 +1,4 @@
 import { useGetFlowDataQuery } from "../features/flow/flowAPI";
-import { useMemo } from "react";
 
 const useGetConnectedNodes = (nodeId) => {
   const { data, isLoading, error } = useGetFlowDataQuery();

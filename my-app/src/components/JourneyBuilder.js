@@ -13,11 +13,11 @@ function JourneyBuilder() {
   const {data, error, isLoading} = useGetFlowDataQuery()
   const [selectedNode, setSelectedNode] = useState(null)
 
-  console.log(isLoading)
+  /*console.log(isLoading)
   console.log(data)
   console.log(data?.nodes)
   console.log(data?.edges)
-  console.log(error)
+  console.log(error)*/
 
   //let edges = data?.edges.map((edge) => edge = {...edge, id: edge.source + edge.target})
   let edges = data?.edges

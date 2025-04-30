@@ -15,7 +15,7 @@ function PrefillPanel({nodeId, onClose}) {
     let form;
     let propertiesList;
 
-    if(nodeId && !isLoading){
+    if(nodeId && !isLoading && data){
       currentNode = data?.nodes?.find((node) => node.id===nodeId)
       form = data?.forms?.find((form) => form.id === currentNode.data.component_id)
       propertiesList = Object.keys(form.field_schema.properties).map((property) => {return <PrefillRow nodeId={currentNode.id} property={property} onClick={()=>setModifying({form: form.id, property: property})}/>})
@@ -31,7 +31,7 @@ function PrefillPanel({nodeId, onClose}) {
             <p className="heading">{"Prefill " + currentNode.data.name}</p>
             {propertiesList}
             <br/>
-            <button onClick={() => onClose()} className="cancel-button">CANCEL</button>
+            <button onClick={() => onClose()} className="close-button">CLOSE</button>
           </div>
           </div>} 
       </div>

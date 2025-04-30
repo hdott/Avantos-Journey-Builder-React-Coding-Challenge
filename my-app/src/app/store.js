@@ -1,4 +1,4 @@
-import { configureStore, prepareAutoBatched } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import { flowAPI } from '../features/flow/flowAPI';
 import { prefillSlice } from '../features/prefill/prefillSlice';
 

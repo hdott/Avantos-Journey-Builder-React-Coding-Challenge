@@ -13,7 +13,7 @@ function SetPrefillModal({onClose, nodeId, selectedProperty}) {
     const [search, setSearch] = useState("")
 
     let availableData = {...globalData}
-    console.log ("connectd nodes", connectedNodes)
+    //console.log ("connectd nodes", connectedNodes)
     let formattedData;
 
     if(!isLoading){
@@ -24,18 +24,18 @@ function SetPrefillModal({onClose, nodeId, selectedProperty}) {
             availableData[currentNode.id] = {name: currentNode.data.name}
             availableData[currentNode.id].properties = form.field_schema.properties
         }
-        console.log("AVAILALBE DATA", availableData)
+        //console.log("AVAILALBE DATA", availableData)
 
         
-        formattedData = Object.values(availableData).map((formData) => ({
-            name: formData.name,
-            properties: Object.keys(formData.properties).filter((property) => property.toLowerCase().includes(search)),
-          }));
+        formattedData = Object.values(availableData).sort((a, b) => a.name.localeCompare(b.name)).map((formData) => ({
+          name: formData.name,
+          properties: Object.keys(formData.properties).filter((property) => property.toLowerCase().includes(search)),
+        }));
         
-          console.log("formattedData:", formattedData);
+          //console.log("formattedData:", formattedData);
         
     
-        console.log(formattedData)
+        //console.log(formattedData)
     }
 
     return(
